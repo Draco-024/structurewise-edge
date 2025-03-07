@@ -3,13 +3,14 @@ import { MainNav } from "@/components/MainNav";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Clock, Award, BookOpen, IndianRupee, Play } from "lucide-react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { courses } from "@/data/courses";
 import { useToast } from "@/hooks/use-toast";
 
 const CourseDetails = () => {
   const { id } = useParams();
   const { toast } = useToast();
+  const navigate = useNavigate();
   const course = courses.find((c) => c.id === Number(id));
 
   if (!course) {
@@ -17,11 +18,11 @@ const CourseDetails = () => {
   }
 
   const handlePurchase = () => {
-    // Handle purchase logic here
     toast({
       title: "Course purchased",
       description: "You now have access to all lectures",
     });
+    navigate(`/enrolled/${id}`);
   };
 
   return (
