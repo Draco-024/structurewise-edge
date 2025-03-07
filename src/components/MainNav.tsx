@@ -1,10 +1,14 @@
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Search } from "lucide-react";
 
 export function MainNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-sm border-b">
@@ -18,22 +22,32 @@ export function MainNav() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="/courses" className="text-gray-600 hover:text-primary transition-colors">
+            <Link 
+              to="/courses" 
+              className={`text-gray-600 hover:text-primary transition-colors ${
+                isActive("/courses") ? "text-primary" : ""
+              }`}
+            >
               Courses
             </Link>
-            <Link to="/about" className="text-gray-600 hover:text-primary transition-colors">
+            <Link 
+              to="/about"
+              className={`text-gray-600 hover:text-primary transition-colors ${
+                isActive("/about") ? "text-primary" : ""
+              }`}
+            >
               About
             </Link>
             <div className="relative">
-              <Button variant="outline" className="flex items-center gap-2">
+              <Button variant="outline" className="flex items-center gap-2 rounded-xl">
                 <Search className="h-4 w-4" />
                 <span>Search</span>
               </Button>
             </div>
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="rounded-xl">
               <Link to="/signin">Sign In</Link>
             </Button>
-            <Button asChild>
+            <Button asChild className="rounded-xl">
               <Link to="/signup">Get Started</Link>
             </Button>
           </div>
@@ -44,7 +58,7 @@ export function MainNav() {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center"
+              className="inline-flex items-center justify-center rounded-xl"
             >
               {isOpen ? (
                 <X className="h-6 w-6" />
@@ -61,26 +75,32 @@ export function MainNav() {
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
                 to="/courses"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50"
+                className={`block px-3 py-2 rounded-xl text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50 ${
+                  isActive("/courses") ? "text-primary bg-gray-50" : ""
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 Courses
               </Link>
               <Link
                 to="/about"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50"
+                className={`block px-3 py-2 rounded-xl text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50 ${
+                  isActive("/about") ? "text-primary bg-gray-50" : ""
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
               <Link
                 to="/signin"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50"
+                className={`block px-3 py-2 rounded-xl text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50 ${
+                  isActive("/signin") ? "text-primary bg-gray-50" : ""
+                }`}
                 onClick={() => setIsOpen(false)}
               >
                 Sign In
               </Link>
-              <Button className="w-full mt-2" asChild>
+              <Button className="w-full mt-2 rounded-xl" asChild>
                 <Link to="/signup" onClick={() => setIsOpen(false)}>
                   Get Started
                 </Link>
