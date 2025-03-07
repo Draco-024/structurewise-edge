@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { MainNav } from "@/components/MainNav";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, BookOpen, Clock, Award } from "lucide-react";
+import { ArrowRight, BookOpen, Clock, Award, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const featuredCourses = [
@@ -38,57 +38,91 @@ const Index = () => {
       <MainNav />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 md:pt-24 lg:pt-32">
+      <section className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white py-20 md:py-32">
         <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+          <div className="grid gap-12 md:grid-cols-2 items-center">
+            <div className="flex flex-col space-y-6">
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-primary">
+                <Award className="h-4 w-4" />
+                Professional Certification
+              </span>
+              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                 Master Structural Engineering
-                <br className="hidden sm:inline" />
-                <span className="text-primary"> with StructoEdge</span>
+                <span className="text-primary block mt-2">with StructoEdge</span>
               </h1>
-              <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl">
-                Learn from industry experts and advance your career with our professional certification courses.
+              <p className="text-gray-500 md:text-xl max-w-[600px]">
+                Learn from industry experts and advance your career with our professional certification courses. Get certified and stay ahead in the field.
               </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button size="lg" className="animate-fade-up" asChild>
+                  <Link to="/courses">
+                    Get Started <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button variant="outline" size="lg">
+                  View Courses
+                </Button>
+              </div>
+              <div className="flex gap-8 items-center">
+                <div className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span className="text-sm text-gray-600">Expert-led</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span className="text-sm text-gray-600">Self-paced</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="h-5 w-5 text-primary" />
+                  <span className="text-sm text-gray-600">Certified</span>
+                </div>
+              </div>
             </div>
-            <div className="space-x-4">
-              <Button asChild size="lg" className="animate-fade-up">
-                <Link to="/courses">
-                  Explore Courses <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+            <div className="relative hidden md:block">
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-purple-500/20 rounded-lg blur-3xl"></div>
+              <img
+                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952"
+                alt="Engineering students"
+                className="relative rounded-lg shadow-2xl"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 bg-white">
         <div className="container px-4 md:px-6">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose StructoEdge?</h2>
           <div className="grid gap-8 md:grid-cols-3">
-            <Card className="p-6 glass-card hover-scale">
+            <Card className="p-6 hover:shadow-lg transition-shadow glass-card hover-scale">
               <BookOpen className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-2">Expert-led Courses</h3>
-              <p className="text-gray-500">Learn from industry professionals with years of experience.</p>
+              <p className="text-gray-500">Learn directly from industry professionals with years of real-world experience.</p>
             </Card>
-            <Card className="p-6 glass-card hover-scale">
+            <Card className="p-6 hover:shadow-lg transition-shadow glass-card hover-scale">
               <Clock className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-2">Learn at Your Pace</h3>
-              <p className="text-gray-500">Access course content anytime, anywhere, at your convenience.</p>
+              <p className="text-gray-500">Access course content anytime, anywhere, and learn at your own convenience.</p>
             </Card>
-            <Card className="p-6 glass-card hover-scale">
+            <Card className="p-6 hover:shadow-lg transition-shadow glass-card hover-scale">
               <Award className="h-12 w-12 text-primary mb-4" />
               <h3 className="text-xl font-bold mb-2">Get Certified</h3>
-              <p className="text-gray-500">Earn recognized certificates upon course completion.</p>
+              <p className="text-gray-500">Earn industry-recognized certificates to showcase your expertise.</p>
             </Card>
           </div>
         </div>
       </section>
 
       {/* Featured Courses Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container px-4 md:px-6">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Courses</h2>
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-3xl font-bold">Featured Courses</h2>
+            <Button variant="outline" asChild>
+              <Link to="/courses">View All Courses</Link>
+            </Button>
+          </div>
           <div className="grid gap-8 md:grid-cols-3">
             {featuredCourses.map((course) => (
               <Card key={course.id} className="overflow-hidden hover-scale">

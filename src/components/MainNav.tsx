@@ -18,19 +18,24 @@ export function MainNav() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link to="/courses" className="text-secondary hover:text-primary transition-colors">
+          <div className="hidden md:flex items-center space-x-6">
+            <Link to="/courses" className="text-gray-600 hover:text-primary transition-colors">
               Courses
             </Link>
-            <Link to="/about" className="text-secondary hover:text-primary transition-colors">
+            <Link to="/about" className="text-gray-600 hover:text-primary transition-colors">
               About
             </Link>
-            <Button variant="outline" className="flex items-center gap-2">
-              <Search className="h-4 w-4" />
-              Search Courses
+            <div className="relative">
+              <Button variant="outline" className="flex items-center gap-2">
+                <Search className="h-4 w-4" />
+                <span>Search</span>
+              </Button>
+            </div>
+            <Button variant="outline" asChild>
+              <Link to="/login">Sign In</Link>
             </Button>
             <Button asChild>
-              <Link to="/login">Sign In</Link>
+              <Link to="/signup">Get Started</Link>
             </Button>
           </div>
 
@@ -57,22 +62,30 @@ export function MainNav() {
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link
                 to="/courses"
-                className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
               >
                 Courses
               </Link>
               <Link
                 to="/about"
-                className="block px-3 py-2 rounded-md text-base font-medium text-secondary hover:text-primary hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
               <Link
                 to="/login"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-primary-dark"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50"
+                onClick={() => setIsOpen(false)}
               >
                 Sign In
               </Link>
+              <Button className="w-full mt-2" asChild>
+                <Link to="/signup" onClick={() => setIsOpen(false)}>
+                  Get Started
+                </Link>
+              </Button>
             </div>
           </div>
         )}
