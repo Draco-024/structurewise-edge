@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -32,7 +31,7 @@ export function MainNav() {
               </Button>
             </div>
             <Button variant="outline" asChild>
-              <Link to="/login">Sign In</Link>
+              <Link to="/signin">Sign In</Link>
             </Button>
             <Button asChild>
               <Link to="/signup">Get Started</Link>
@@ -75,7 +74,7 @@ export function MainNav() {
                 About
               </Link>
               <Link
-                to="/login"
+                to="/signin"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-primary hover:bg-gray-50"
                 onClick={() => setIsOpen(false)}
               >
